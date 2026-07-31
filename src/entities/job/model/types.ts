@@ -1,4 +1,4 @@
-const JOB_STATUS = {
+export const JOB_STATUS = {
 	PENDING: "pending",
 	IN_PROGRESS: "in_progress",
 	COMPLETED: "completed",
@@ -23,5 +23,5 @@ export interface IJob {
 	urlCount: number;
 	successCount: number;
 	errorCount: number;
-	createdAt: Date;
+	createdAt: string;
 }
