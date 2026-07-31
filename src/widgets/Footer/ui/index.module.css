@@ -1,0 +1,9 @@
+.footer {
+	padding: 20px 0;
+	background-color: var(--color-footer-bg);
+}
+
+.footer__creator {
+	text-align: center;
+	color: var(--color-text-light);
+}

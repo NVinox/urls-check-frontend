@@ -4,9 +4,9 @@ import styles from "./index.module.css";
 
 export default function Footer() {
 	return (
-		<footer>
+		<footer className={styles.footer}>
 			<ContainerLayout>
-				<p>Футер</p>
+				<p className={styles.footer__creator}>&copy; Sergey Klimov</p>
 			</ContainerLayout>
 		</footer>
 	);
