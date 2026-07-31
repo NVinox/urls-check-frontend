@@ -41,6 +41,7 @@ body {
 		Cantarell,
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
+	background-color: var(--color-site-bg);
 }
 
 main {
