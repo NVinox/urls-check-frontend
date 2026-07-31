@@ -4,6 +4,7 @@ import { JobList } from "@/widgets/JobList";
 import { useJobStore } from "@/entities/job";
 
 import { Title } from "@/shared/Title";
+import { SectionLayout } from "@/shared/SectionLayout";
 import { ContainerLayout } from "@/shared/ContainerLayout";
 
 export default function Home() {
@@ -14,12 +15,12 @@ export default function Home() {
 	}, [fetchJobs]);
 
 	return (
-		<section>
+		<SectionLayout type="secondary">
 			<ContainerLayout>
 				<Title>Главная</Title>
 
 				<JobList jobs={jobs} isLoading={isLoading} />
 			</ContainerLayout>
-		</section>
+		</SectionLayout>
 	);
 }
