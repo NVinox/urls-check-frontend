@@ -2,10 +2,21 @@
 	--color-header-bg: #292929;
 	--color-footer-bg: #292929;
 	--color-site-bg: #f3f3f3;
+	--color-card-bg: #151d30;
+	--color-card-bg-hover: #1e2942;
+	--color-pending-bg: #a88114;
+	--color-progress-bg: #aa621f;
+	--color-cancaled-bg: #3a3a3a;
+	--color-success-bg: #357908;
+	--color-error-bg: #860f0f;
 
 	--color-text-dark: #212529;
 	--color-text-light: #bebebe;
 	--color-text-white: #fff;
+
+	--color-border-card: #24324f;
+
+	--shadow-card: 0 4px 20px rgba(0, 0, 0, 0.25);
 
 	--transition-setting: 0.2s ease-in-out;
 }
