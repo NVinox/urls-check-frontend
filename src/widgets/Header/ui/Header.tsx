@@ -1,21 +1,31 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { ContainerLayout } from "@/shared/ContainerLayout";
 import { CREATE_JOB_ROUTE, HOME_ROUTE } from "@/shared/constants";
 
 import styles from "./index.module.css";
 
+interface INavLink {
+	isActive: boolean;
+}
+
 export default function Header() {
+	function getLinkClass({ isActive }: INavLink): string {
+		return isActive
+			? `${styles.header__link} ${styles.active}`
+			: styles.header__link;
+	}
+
 	return (
 		<header className={styles.header}>
 			<ContainerLayout>
 				<nav className={styles.header__nav}>
-					<Link className={styles.header__link} to={HOME_ROUTE}>
+					<NavLink className={getLinkClass} to={HOME_ROUTE}>
 						Главная
-					</Link>
-					<Link className={styles.header__link} to={CREATE_JOB_ROUTE}>
+					</NavLink>
+					<NavLink className={getLinkClass} to={CREATE_JOB_ROUTE}>
 						Создать
-					</Link>
+					</NavLink>
 				</nav>
 			</ContainerLayout>
 		</header>

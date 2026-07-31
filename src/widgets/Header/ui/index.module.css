@@ -3,6 +3,10 @@
 	background-color: var(--color-header-bg);
 }
 
+.header .active {
+	color: var(--color-text-white);
+}
+
 .header__nav {
 	display: flex;
 	justify-content: center;
