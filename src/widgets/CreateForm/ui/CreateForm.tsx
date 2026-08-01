@@ -10,7 +10,7 @@ export default function CreateForm() {
 
 			<div className={styles.form__footer}>
 				<Button>Создать</Button>
-				<Button>Отменить</Button>
+				<Button variant="secondary">Отменить</Button>
 			</div>
 		</form>
 	);

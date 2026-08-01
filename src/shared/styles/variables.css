@@ -10,16 +10,23 @@
 	--color-success-bg: #357908;
 	--color-error-bg: #860f0f;
 	--color-input-bg: #1a1a1a;
+	--color-button-primary-bg: #ededed;
+	--color-button-primary-hover-bg: #e0e0e0;
+	--color-button-secondary-hover-bg: #2a2a2a;
 
 	--color-text-dark: #212529;
 	--color-text-light: #808080;
 	--color-text-white: #ededed;
 	--color-text-input: #f3f4f6;
 	--color-text-placeholder-input: #555555;
+	--color-text-button-primary: #0a0a0a;
+	--color-text-button-secondary: #a3a3a3;
+	--color-text-button-secondary-hover: #fff;
 
 	--color-border-card: #2a2a2a;
 	--color-border-input: #2a2a2a;
 	--color-border-focus-input: #4a4a4a;
+	--color-border-button-secondary: #2a2a2a;
 
 	--transition-setting: 0.2s ease-in-out;
 }
