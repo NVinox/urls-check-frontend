@@ -45,7 +45,8 @@ export const useJobStore = create<IJobState>((set, get) => ({
 			if (
 				currentJob &&
 				(currentJob.status === JOB_STATUS.COMPLETED ||
-					currentJob.status === JOB_STATUS.FAILED)
+					currentJob.status === JOB_STATUS.FAILED ||
+					currentJob.status === JOB_STATUS.CANCELED)
 			) {
 				set({ isPolling: false });
 				break;
