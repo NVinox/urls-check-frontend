@@ -4,6 +4,10 @@
 	row-gap: 15px;
 }
 
+.form__error {
+	color: var(--color-text-error);
+}
+
 .form__footer {
 	display: flex;
 	column-gap: 15px;

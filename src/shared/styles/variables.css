@@ -18,6 +18,7 @@
 	--color-text-light: #808080;
 	--color-text-white: #ededed;
 	--color-text-input: #f3f4f6;
+	--color-text-error: #b41515;
 	--color-text-placeholder-input: #555555;
 	--color-text-button-primary: #0a0a0a;
 	--color-text-button-secondary: #a3a3a3;
@@ -27,6 +28,7 @@
 	--color-border-input: #2a2a2a;
 	--color-border-focus-input: #4a4a4a;
 	--color-border-button-secondary: #2a2a2a;
+	--color-border-error: #b41515;
 
 	--transition-setting: 0.2s ease-in-out;
 }
