@@ -17,15 +17,17 @@ interface IProps {
 
 export default function UrlList({ urls }: IProps) {
 	return (
-		<ul>
+		<ul className={styles.url}>
 			{urls.map((url) => (
 				<li key={url.id}>
-					<article>
-						<header>
-							<Title variant="h2">{url.url}</Title>
+					<article className={styles.url__article}>
+						<header className={styles.url__header}>
+							<Title variant="h2">
+								<span className={styles.url__title}>{url.url}</span>
+							</Title>
 
 							<span
-								className={clsx(styles.jobs__status, {
+								className={clsx(styles.url__status, {
 									[styles.pending]: url.status === URL_STATUS.PENDING,
 									[styles.progress]: url.status === URL_STATUS.IN_PROGRESS,
 									[styles.success]: url.status === URL_STATUS.SUCCESS,
@@ -38,35 +40,47 @@ export default function UrlList({ urls }: IProps) {
 						</header>
 
 						<footer>
-							<ul>
+							<ul className={styles.url__details}>
 								{url.statusCode && (
-									<li>
-										<p>Статус код:</p>
-										<span>{url.statusCode}</span>
+									<li className={styles.url__detail}>
+										<p className={styles.url__detail_title}>Статус код:</p>
+										<span className={styles.url__detail_value}>
+											{url.statusCode}
+										</span>
 									</li>
 								)}
 								{url.errorMessage && (
-									<li>
-										<p>Сообщение об ошибке:</p>
-										<span>{url.errorMessage}</span>
+									<li className={styles.url__detail}>
+										<p className={styles.url__detail_title}>
+											Сообщение об ошибке:
+										</p>
+										<span className={styles.url__detail_value}>
+											{url.errorMessage}
+										</span>
 									</li>
 								)}
 								{url.startedAt && (
-									<li>
-										<p>Начало запроса:</p>
-										<span>{formatDateWithTime(url.startedAt)}</span>
+									<li className={styles.url__detail}>
+										<p className={styles.url__detail_title}>Начало запроса:</p>
+										<span className={styles.url__detail_value}>
+											{formatDateWithTime(url.startedAt)}
+										</span>
 									</li>
 								)}
 								{url.finishedAt && (
-									<li>
-										<p>Конец запроса:</p>
-										<span>{formatDateWithTime(url.finishedAt)}</span>
+									<li className={styles.url__detail}>
+										<p className={styles.url__detail_title}>Конец запроса:</p>
+										<span className={styles.url__detail_value}>
+											{formatDateWithTime(url.finishedAt)}
+										</span>
 									</li>
 								)}
 								{url.duration && (
-									<li>
-										<p>Время отклика:</p>
-										<span>{formatSeconds(url.duration)}</span>
+									<li className={styles.url__detail}>
+										<p className={styles.url__detail_title}>Время отклика:</p>
+										<span className={styles.url__detail_value}>
+											{formatSeconds(url.duration)}
+										</span>
 									</li>
 								)}
 							</ul>

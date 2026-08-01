@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { JobDetail } from "@/widgets/JobDetail";
+import { UrlList } from "@/widgets/UrlList";
 
 import { useJobStore } from "@/entities/job";
 
@@ -19,19 +20,31 @@ export default function Job() {
 		}
 	}, [fetchJob, jobId]);
 
-	return (
+	return isLoading ? (
 		<SectionLayout type="secondary">
 			<ContainerLayout>
-				{isLoading ? (
-					<p>Загрузка...</p>
-				) : job ? (
-					<>
-						<Title>{job.jobId}</Title>
-						<JobDetail job={job} />
-					</>
-				) : (
-					<p>Нет данных</p>
-				)}
+				<p>Загрузка...</p>
+			</ContainerLayout>
+		</SectionLayout>
+	) : job ? (
+		<>
+			<SectionLayout type="secondary">
+				<ContainerLayout>
+					<Title>{job.jobId}</Title>
+					<JobDetail job={job} />
+				</ContainerLayout>
+			</SectionLayout>
+
+			<SectionLayout>
+				<ContainerLayout>
+					<UrlList urls={job.urls} />
+				</ContainerLayout>
+			</SectionLayout>
+		</>
+	) : (
+		<SectionLayout type="secondary">
+			<ContainerLayout>
+				<p>Нет данных</p>
 			</ContainerLayout>
 		</SectionLayout>
 	);

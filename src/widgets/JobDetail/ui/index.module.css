@@ -1,0 +1,19 @@
+.job {
+	display: flex;
+	flex-direction: column;
+	row-gap: 5px;
+}
+
+.job__item {
+	display: flex;
+	align-items: center;
+	column-gap: 15px;
+}
+
+.job__title {
+	min-width: 150px;
+}
+
+.job__value {
+	font-weight: 500;
+}
