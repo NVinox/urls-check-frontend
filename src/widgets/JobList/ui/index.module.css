@@ -38,34 +38,8 @@
 	column-gap: 20px;
 }
 
-.jobs__header .pending {
-	background-color: var(--color-pending-bg);
-}
-
-.jobs__header .progress {
-	background-color: var(--color-progress-bg);
-}
-
-.jobs__header .canceled {
-	background-color: var(--color-canceled-bg);
-}
-
-.jobs__header .success {
-	background-color: var(--color-success-bg);
-}
-
-.jobs__header .error {
-	background-color: var(--color-error-bg);
-}
-
 .jobs__title {
 	font-size: 20px;
-}
-
-.jobs__status {
-	font-weight: 500;
-	padding: 5px;
-	border-radius: 5px;
 }
 
 .jobs__footer {

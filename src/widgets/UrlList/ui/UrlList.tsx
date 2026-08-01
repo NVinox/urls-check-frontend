@@ -1,12 +1,7 @@
-import clsx from "clsx";
-
-import {
-	URL_STATUS,
-	URL_STATUS_TR,
-	type IUrl,
-} from "@/entities/job/model/types";
+import { URL_STATUS_TR, type IUrl } from "@/entities/job/model/types";
 
 import { Title } from "@/shared/Title";
+import { StatusBadge } from "@/shared/StatusBadge";
 import { formatDateWithTime, formatSeconds } from "@/shared/lib/date";
 
 import styles from "./index.module.css";
@@ -26,17 +21,10 @@ export default function UrlList({ urls }: IProps) {
 								<span className={styles.url__title}>{url.url}</span>
 							</Title>
 
-							<span
-								className={clsx(styles.url__status, {
-									[styles.pending]: url.status === URL_STATUS.PENDING,
-									[styles.progress]: url.status === URL_STATUS.IN_PROGRESS,
-									[styles.success]: url.status === URL_STATUS.SUCCESS,
-									[styles.canceled]: url.status === URL_STATUS.CANCELLED,
-									[styles.error]: url.status === URL_STATUS.ERROR,
-								})}
-							>
-								{URL_STATUS_TR[url.status]}
-							</span>
+							<StatusBadge
+								status={url.status}
+								text={URL_STATUS_TR[url.status]}
+							/>
 						</header>
 
 						<footer>

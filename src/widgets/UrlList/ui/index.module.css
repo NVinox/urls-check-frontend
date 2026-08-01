@@ -4,26 +4,6 @@
 	row-gap: 20px;
 }
 
-.url .pending {
-	background-color: var(--color-pending-bg);
-}
-
-.url .progress {
-	background-color: var(--color-progress-bg);
-}
-
-.url .success {
-	background-color: var(--color-success-bg);
-}
-
-.url .canceled {
-	background-color: var(--color-canceled-bg);
-}
-
-.url .error {
-	background-color: var(--color-error-bg);
-}
-
 .url__article {
 	display: flex;
 	flex-direction: column;
@@ -46,12 +26,6 @@
 
 .url__title {
 	color: var(--color-text-white);
-}
-
-.url__status {
-	font-weight: 500;
-	padding: 5px;
-	border-radius: 5px;
 }
 
 .url__details {

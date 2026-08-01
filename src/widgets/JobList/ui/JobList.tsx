@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import clsx from "clsx";
 
-import { JOB_STATUS, JOB_STATUS_TR, type IJob } from "@/entities/job";
+import { JOB_STATUS_TR, type IJob } from "@/entities/job";
 
 import { Title } from "@/shared/Title";
 import { formatDateOnly } from "@/shared/lib/date";
+import { StatusBadge } from "@/shared/StatusBadge";
 
 import styles from "./index.module.css";
 
@@ -27,17 +27,11 @@ export default function JobList({ isLoading, jobs }: IProps) {
 									{job.jobId}
 								</Link>
 							</Title>
-							<span
-								className={clsx(styles.jobs__status, {
-									[styles.pending]: job.status === JOB_STATUS.PENDING,
-									[styles.progress]: job.status === JOB_STATUS.IN_PROGRESS,
-									[styles.success]: job.status === JOB_STATUS.COMPLETED,
-									[styles.canceled]: job.status === JOB_STATUS.CANCELED,
-									[styles.error]: job.status === JOB_STATUS.FAILED,
-								})}
-							>
-								{JOB_STATUS_TR[job.status]}
-							</span>
+
+							<StatusBadge
+								status={job.status}
+								text={JOB_STATUS_TR[job.status]}
+							/>
 						</header>
 
 						<footer className={styles.jobs__footer}>

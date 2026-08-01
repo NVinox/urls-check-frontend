@@ -1,6 +1,7 @@
-import { formatDateOnly } from "@/shared/lib/date";
-
 import { JOB_STATUS_TR, type IJob } from "@/entities/job";
+
+import { formatDateOnly } from "@/shared/lib/date";
+import { StatusBadge } from "@/shared/StatusBadge";
 
 import styles from "./index.module.css";
 
@@ -13,7 +14,7 @@ export default function JobDetail({ job }: IProps) {
 		<ul className={styles.job}>
 			<li className={styles.job__item}>
 				<p className={styles.job__title}>Статус:</p>
-				<span className={styles.job__value}>{JOB_STATUS_TR[job.status]}</span>
+				<StatusBadge status={job.status} text={JOB_STATUS_TR[job.status]} />
 			</li>
 			<li className={styles.job__item}>
 				<p className={styles.job__title}>Количество ссылок:</p>
