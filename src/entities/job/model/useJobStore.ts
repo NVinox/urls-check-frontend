@@ -1,4 +1,5 @@
 import {
+	JOB_STATUS,
 	JobApi,
 	type IJob,
 	type IJobAlone,
@@ -10,19 +11,58 @@ interface IJobState {
 	job: IJobAlone | null;
 	jobs: IJob[];
 	isLoading: boolean;
-	fetchJob: (jobId: string) => Promise<void>;
+	isPolling: boolean;
+	stopPolling: () => void;
+	fetchJob: (jobId: string, isBackground?: boolean) => Promise<void>;
+	startPolling: (jobId: string) => Promise<void>;
 	fetchJobs: () => Promise<void>;
 	createJob: (urls: string[]) => Promise<IJobCreated | undefined>;
 	deleteJob: (jobId: string) => Promise<void>;
 }
 
-export const useJobStore = create<IJobState>((set) => ({
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+export const useJobStore = create<IJobState>((set, get) => ({
 	job: null,
 	jobs: [],
 	isLoading: false,
+	isPolling: false,
 
-	async fetchJob(jobId: string): Promise<void> {
-		set({ isLoading: true });
+	stopPolling() {
+		set({ isPolling: false });
+	},
+
+	async startPolling(jobId: string): Promise<void> {
+		if (get().isPolling) return;
+
+		set({ isPolling: true });
+
+		await get().fetchJob(jobId, false);
+
+		while (get().isPolling) {
+			const currentJob = get().job;
+
+			if (
+				currentJob &&
+				(currentJob.status === JOB_STATUS.COMPLETED ||
+					currentJob.status === JOB_STATUS.FAILED)
+			) {
+				set({ isPolling: false });
+				break;
+			}
+
+			await delay(2000);
+
+			if (get().isPolling) {
+				await get().fetchJob(jobId, true);
+			}
+		}
+	},
+
+	async fetchJob(jobId: string, isBackground = false): Promise<void> {
+		if (!isBackground) {
+			set({ isLoading: true });
+		}
 
 		try {
 			const response = await JobApi.getJob(jobId);
@@ -32,7 +72,9 @@ export const useJobStore = create<IJobState>((set) => ({
 			}
 		} catch (err: unknown) {
 		} finally {
-			set({ isLoading: false });
+			if (!isBackground) {
+				set({ isLoading: false });
+			}
 		}
 	},
 
@@ -74,6 +116,7 @@ export const useJobStore = create<IJobState>((set) => ({
 		} catch (err: unknown) {
 		} finally {
 			set({ isLoading: false });
+			set({ isPolling: false });
 		}
 	},
 }));

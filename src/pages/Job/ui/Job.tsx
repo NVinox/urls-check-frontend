@@ -12,13 +12,17 @@ import { ContainerLayout } from "@/shared/ContainerLayout";
 
 export default function Job() {
 	const { jobId } = useParams();
-	const { fetchJob, job, isLoading } = useJobStore();
+	const { job, isLoading, startPolling, stopPolling } = useJobStore();
 
 	useEffect(() => {
 		if (jobId) {
-			fetchJob(jobId);
+			startPolling(jobId);
 		}
-	}, [fetchJob, jobId]);
+
+		return () => {
+			stopPolling();
+		};
+	}, [jobId]);
 
 	return isLoading ? (
 		<SectionLayout type="secondary">
