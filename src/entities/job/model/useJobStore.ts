@@ -13,6 +13,7 @@ interface IJobState {
 	fetchJob: (jobId: string) => Promise<void>;
 	fetchJobs: () => Promise<void>;
 	createJob: (urls: string[]) => Promise<IJobCreated | undefined>;
+	deleteJob: (jobId: string) => Promise<void>;
 }
 
 export const useJobStore = create<IJobState>((set) => ({
@@ -59,6 +60,17 @@ export const useJobStore = create<IJobState>((set) => ({
 			if (response.data) {
 				return response.data;
 			}
+		} catch (err: unknown) {
+		} finally {
+			set({ isLoading: false });
+		}
+	},
+
+	async deleteJob(jobId: string): Promise<void> {
+		set({ isLoading: true });
+
+		try {
+			await JobApi.deleteJob(jobId);
 		} catch (err: unknown) {
 		} finally {
 			set({ isLoading: false });

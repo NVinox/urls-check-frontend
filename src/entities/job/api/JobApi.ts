@@ -22,4 +22,10 @@ export class JobApi {
 
 		return response.data;
 	}
+
+	static async deleteJob(jobId: string): Promise<IResponse<boolean>> {
+		const response = await apiInstance.delete(`jobs/${jobId}`);
+
+		return response.data;
+	}
 }
