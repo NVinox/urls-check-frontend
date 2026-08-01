@@ -8,7 +8,7 @@
 	--color-progress-bg: #aa621f;
 	--color-canceled-bg: #3a3a3a;
 	--color-success-bg: #357908;
-	--color-error-bg: #860f0f;
+	--color-error-bg: #ff6b6b;
 	--color-input-bg: #1a1a1a;
 	--color-button-primary-bg: #ededed;
 	--color-button-primary-hover-bg: #e0e0e0;
@@ -18,7 +18,7 @@
 	--color-text-light: #808080;
 	--color-text-white: #ededed;
 	--color-text-input: #f3f4f6;
-	--color-text-error: #b41515;
+	--color-text-error: #ff6b6b;
 	--color-text-placeholder-input: #555555;
 	--color-text-button-primary: #0a0a0a;
 	--color-text-button-secondary: #a3a3a3;

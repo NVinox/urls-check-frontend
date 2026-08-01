@@ -5,7 +5,7 @@ import styles from "./index.module.css";
 
 interface IProps {
 	children: ReactNode;
-	variant?: "h1" | "h2";
+	variant?: "h1" | "h2" | "h3";
 	className?: string;
 }
 
