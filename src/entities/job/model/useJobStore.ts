@@ -1,19 +1,32 @@
-import { JobApi, type IJob } from "@/entities/job";
+import { JobApi, type IJob, type IJobAlone } from "@/entities/job";
 import { create } from "zustand";
 
 interface IJobState {
+	job: IJobAlone | null;
 	jobs: IJob[];
 	isLoading: boolean;
-	setJobs: (jobs: IJob[]) => void;
+	fetchJob: (jobId: string) => Promise<void>;
 	fetchJobs: () => Promise<void>;
 }
 
 export const useJobStore = create<IJobState>((set) => ({
+	job: null,
 	jobs: [],
 	isLoading: false,
 
-	setJobs(jobs): void {
-		set({ jobs });
+	async fetchJob(jobId: string): Promise<void> {
+		set({ isLoading: true });
+
+		try {
+			const response = await JobApi.getJob(jobId);
+
+			if (response.data) {
+				set({ job: response.data });
+			}
+		} catch (err: unknown) {
+		} finally {
+			set({ isLoading: false });
+		}
 	},
 
 	async fetchJobs(): Promise<void> {
