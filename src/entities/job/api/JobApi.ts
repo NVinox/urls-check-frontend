@@ -1,4 +1,4 @@
-import type { IJob, IJobAlone } from "@/entities/job/model/types";
+import type { IJob, IJobAlone, IJobCreated } from "@/entities/job/model/types";
 
 import { apiInstance, type IResponse } from "@/shared/api";
 
@@ -13,6 +13,12 @@ export class JobApi {
 		const response = await apiInstance.get<IResponse<IJobAlone>>(
 			`jobs/${jobId}`,
 		);
+
+		return response.data;
+	}
+
+	static async createJob(urls: string[]): Promise<IResponse<IJobCreated>> {
+		const response = await apiInstance.post("job", { urls });
 
 		return response.data;
 	}
