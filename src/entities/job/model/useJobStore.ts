@@ -7,6 +7,8 @@ import {
 } from "@/entities/job";
 import { create } from "zustand";
 
+import { useErrorModalStore } from "@/shared/ErrorModal";
+
 interface IJobState {
 	job: IJobAlone | null;
 	jobs: IJob[];
@@ -72,6 +74,7 @@ export const useJobStore = create<IJobState>((set, get) => ({
 				set({ job: response.data });
 			}
 		} catch (err: unknown) {
+			useErrorModalStore.getState().showError();
 		} finally {
 			if (!isBackground) {
 				set({ isLoading: false });
@@ -89,6 +92,7 @@ export const useJobStore = create<IJobState>((set, get) => ({
 				set({ jobs: response.data });
 			}
 		} catch (err: unknown) {
+			useErrorModalStore.getState().showError();
 		} finally {
 			set({ isLoading: false });
 		}
@@ -104,6 +108,7 @@ export const useJobStore = create<IJobState>((set, get) => ({
 				return response.data;
 			}
 		} catch (err: unknown) {
+			useErrorModalStore.getState().showError();
 		} finally {
 			set({ isLoading: false });
 		}
@@ -115,6 +120,7 @@ export const useJobStore = create<IJobState>((set, get) => ({
 		try {
 			await JobApi.deleteJob(jobId);
 		} catch (err: unknown) {
+			useErrorModalStore.getState().showError();
 		} finally {
 			set({ isLoading: false });
 			set({ isPolling: false });
