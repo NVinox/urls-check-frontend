@@ -1,0 +1,10 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	row-gap: 15px;
+}
+
+.form__footer {
+	display: flex;
+	column-gap: 15px;
+}

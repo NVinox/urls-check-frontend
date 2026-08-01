@@ -5,10 +5,10 @@ import styles from "./index.module.css";
 
 export default function CreateForm() {
 	return (
-		<form>
-			<Textarea></Textarea>
+		<form className={styles.form}>
+			<Textarea rows={5} placeholder="Введите ссылки"></Textarea>
 
-			<div>
+			<div className={styles.form__footer}>
 				<Button>Создать</Button>
 				<Button>Отменить</Button>
 			</div>
