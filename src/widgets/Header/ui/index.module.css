@@ -5,6 +5,7 @@
 	width: 100%;
 	padding: 20px 0;
 	background-color: var(--color-header-bg);
+	z-index: 10;
 }
 
 .header .active {

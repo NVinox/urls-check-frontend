@@ -54,6 +54,10 @@ export interface IJob {
 	createdAt: string;
 }
 
+export interface IJobCreated {
+	jobId: string;
+}
+
 export interface IJobAlone extends IJob {
 	urls: IUrl[];
 }
