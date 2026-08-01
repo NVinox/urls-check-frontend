@@ -1,20 +1,23 @@
-import { JobApi, type IJob, type IJobAlone } from "@/entities/job";
+import {
+	JobApi,
+	type IJob,
+	type IJobAlone,
+	type IJobCreated,
+} from "@/entities/job";
 import { create } from "zustand";
 
 interface IJobState {
 	job: IJobAlone | null;
 	jobs: IJob[];
-	createdJobId: string | null;
 	isLoading: boolean;
 	fetchJob: (jobId: string) => Promise<void>;
 	fetchJobs: () => Promise<void>;
-	createJob: (urls: string[]) => Promise<void>;
+	createJob: (urls: string[]) => Promise<IJobCreated | undefined>;
 }
 
 export const useJobStore = create<IJobState>((set) => ({
 	job: null,
 	jobs: [],
-	createdJobId: null,
 	isLoading: false,
 
 	async fetchJob(jobId: string): Promise<void> {
@@ -47,14 +50,14 @@ export const useJobStore = create<IJobState>((set) => ({
 		}
 	},
 
-	async createJob(urls: string[]): Promise<void> {
+	async createJob(urls: string[]): Promise<IJobCreated | undefined> {
 		set({ isLoading: true });
 
 		try {
 			const response = await JobApi.createJob(urls);
 
 			if (response.data) {
-				set({ createdJobId: response.data.jobId });
+				return response.data;
 			}
 		} catch (err: unknown) {
 		} finally {

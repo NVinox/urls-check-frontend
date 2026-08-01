@@ -18,7 +18,7 @@ export class JobApi {
 	}
 
 	static async createJob(urls: string[]): Promise<IResponse<IJobCreated>> {
-		const response = await apiInstance.post("job", { urls });
+		const response = await apiInstance.post("jobs", { urls });
 
 		return response.data;
 	}

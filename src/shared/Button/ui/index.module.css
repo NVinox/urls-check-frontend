@@ -12,6 +12,11 @@
 	background-color: var(--color-button-primary-bg);
 }
 
+.button.button__primary:disabled {
+	pointer-events: none;
+	opacity: 0.7;
+}
+
 .button.button__primary:hover {
 	background-color: var(--color-button-primary-hover-bg);
 }
