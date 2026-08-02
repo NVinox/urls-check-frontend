@@ -16,6 +16,8 @@ services:
       - NODE_ENV=development
     env_file:
       - .env.development
+    networks:
+      - default
   prod:
     container_name: urls-check-prod
     build:
@@ -27,8 +29,14 @@ services:
     restart: always
     environment:
       - NODE_ENV=production
+      - BACKEND_PORT=${BACKEND_PORT}
+      - NGINX_ENVSUBST_FILTER=BACKEND_PORT
     env_file:
       - .env.production
+    networks:
+      - default
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
 networks:
   default:
