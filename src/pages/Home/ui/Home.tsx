@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
+
 import { JobList } from "@/widgets/JobList";
 
 import { useJobStore } from "@/entities/job";
@@ -15,12 +17,18 @@ export default function Home() {
 	}, [fetchJobs]);
 
 	return (
-		<SectionLayout type="secondary">
-			<ContainerLayout>
-				<Title>Главная</Title>
+		<>
+			<Helmet>
+				<title>Главная</title>
+			</Helmet>
 
-				<JobList jobs={jobs} isLoading={isLoading} />
-			</ContainerLayout>
-		</SectionLayout>
+			<SectionLayout type="secondary">
+				<ContainerLayout>
+					<Title>Главная</Title>
+
+					<JobList jobs={jobs} isLoading={isLoading} />
+				</ContainerLayout>
+			</SectionLayout>
+		</>
 	);
 }
