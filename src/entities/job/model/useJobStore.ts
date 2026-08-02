@@ -16,7 +16,7 @@ interface IJobState {
 	isPolling: boolean;
 	stopPolling: () => void;
 	fetchJob: (jobId: string, isBackground?: boolean) => Promise<void>;
-	startPolling: (jobId: string) => Promise<void>;
+	startPolling: (jobId: string) => Promise<boolean>;
 	fetchJobs: () => Promise<void>;
 	createJob: (urls: string[]) => Promise<IJobCreated | undefined>;
 	deleteJob: (jobId: string) => Promise<void>;
@@ -34,12 +34,19 @@ export const useJobStore = create<IJobState>((set, get) => ({
 		set({ isPolling: false });
 	},
 
-	async startPolling(jobId: string): Promise<void> {
-		if (get().isPolling) return;
+	async startPolling(jobId: string): Promise<boolean> {
+		if (get().isPolling) {
+			return true;
+		}
 
 		set({ isPolling: true });
 
 		await get().fetchJob(jobId, false);
+
+		if (!get().job) {
+			set({ isPolling: false });
+			return false;
+		}
 
 		while (get().isPolling) {
 			const currentJob = get().job;
@@ -60,6 +67,8 @@ export const useJobStore = create<IJobState>((set, get) => ({
 				await get().fetchJob(jobId, true);
 			}
 		}
+
+		return true;
 	},
 
 	async fetchJob(jobId: string, isBackground = false): Promise<void> {
