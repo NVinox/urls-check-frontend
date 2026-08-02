@@ -1,0 +1,26 @@
+.status__badge {
+	font-weight: 500;
+	padding: 5px;
+	border-radius: 5px;
+	color: var(--color-text-white);
+}
+
+.status__badge.pending {
+	background-color: var(--color-pending-bg);
+}
+
+.status__badge.progress {
+	background-color: var(--color-progress-bg);
+}
+
+.status__badge.success {
+	background-color: var(--color-success-bg);
+}
+
+.status__badge.canceled {
+	background-color: var(--color-canceled-bg);
+}
+
+.status__badge.error {
+	background-color: var(--color-error-bg);
+}

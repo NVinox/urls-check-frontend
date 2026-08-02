@@ -12,6 +12,7 @@ COPY . .
 RUN npm run build
 
 FROM nginx:alpine AS production
+COPY default.conf.template /etc/nginx/templates/default.conf.template
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
